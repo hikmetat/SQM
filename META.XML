@@ -1,1 +1,3 @@
-<root>Root Text</root>
+<root>
+  <elem>Base element</elem>
+</root>
