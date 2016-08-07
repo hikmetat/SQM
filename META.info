@@ -1,0 +1,13 @@
+    {
+        "perl" : "6.*",
+        "name" : "SVR::SQM",
+        "version" : "0.1.0",
+        "description" : "SQM data management.",
+        "authors" : [ "Hikmet Arif Topcuoglu" ],
+        "provides" : {
+            "SVR::SQM" : "lib/SQM/extract.pl"
+        },
+        "depends" : [ ],
+        "resources" : [ "sqmsample.sqm" ],
+        "source-url" : "git://github.com/you/SVR-SQL.git"
+    }

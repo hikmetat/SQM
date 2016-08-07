@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <title>SQM::Writer::SQMDumper</title>
+  <meta charset="UTF-8" />
+  <style>
+    /* code gets the browser-default font
+     * kbd gets a slightly less common monospace font
+     * samp gets the hard pixelly fonts
+     */
+    kbd { font-family: "Droid Sans Mono", "Luxi Mono", "Inconsolata", monospace }
+    samp { font-family: "Terminus", "Courier", "Lucida Console", monospace }
+    /* WHATWG HTML frowns on the use of <u> because it looks like a link,
+     * so we make it not look like one.
+     */
+    u { text-decoration: none }
+    .nested {
+        margin-left: 3em;
+    }
+    // footnote things:
+    aside, u { opacity: 0.7 }
+    a[id^="fn-"]:target { background: #ff0 }
+  </style>
+  <link rel="stylesheet" href="//design.perl6.org/perl.css">
+  <meta name="description" value="This is the base class for as SAX-like event dispatcher for SQM handling. It extends  StreamDispatcher::StreamDispatcherBase by providing a methods for the following events:class-beginattribclass-endarray-beginarray-elemarray-end Hence the call to event the-event will be evp_the-event(%event-hash) the methods for events are emty hence unimplemented events will silently be ignored unless the descendant class implements an action" />
+  
+</head>
+<body class="pod" id="___top">
+
+
+<h1 class='title'>SQM::Writer::SQMDumper</h1>
+<nav class="indexgroup">
+</nav>
+<p>Dumps SQM input</p>
+<section><h1>SYNOPSIS</h1>
+<pre>SQM::Writer::SQMDumper.new( 
+		stream-buffer =&gt; Utilities::StreamBuffer.new( 
+				input =&gt; &#39;sample.sqm&#39;  
+			) 
+	).parse;
+</pre>
+</section>
+<section><h1>DESCRIPTION</h1>
+<p>This is the base class for as SAX-like event dispatcher for SQM handling. It extends  <a href="StreamDispatcher::StreamDispatcherBase">StreamDispatcher::StreamDispatcherBase</a> by providing a methods for the following events:</p>
+<li><p>class-begin</p>
+</li>
+<li><p>attrib</p>
+</li>
+<li><p>class-end</p>
+</li>
+<li><p>array-begin</p>
+</li>
+<li><p>array-elem</p>
+</li>
+<li><p>array-end Hence the call to event <em>the-event</em> will be <em>evp_the-event(%event-hash)</em> the methods for events are emty hence unimplemented events will silently be ignored unless the descendant class implements an action</p>
+</li>
+</section>
+<section><h1>cut</h1>
+</section>
+
+
+
+</body>
+</html>
+

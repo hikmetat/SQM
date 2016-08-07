@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+  <title>StreamParser::Base</title>
+  <meta charset="UTF-8" />
+  <style>
+    /* code gets the browser-default font
+     * kbd gets a slightly less common monospace font
+     * samp gets the hard pixelly fonts
+     */
+    kbd { font-family: "Droid Sans Mono", "Luxi Mono", "Inconsolata", monospace }
+    samp { font-family: "Terminus", "Courier", "Lucida Console", monospace }
+    /* WHATWG HTML frowns on the use of <u> because it looks like a link,
+     * so we make it not look like one.
+     */
+    u { text-decoration: none }
+    .nested {
+        margin-left: 3em;
+    }
+    // footnote things:
+    aside, u { opacity: 0.7 }
+    a[id^="fn-"]:target { background: #ff0 }
+  </style>
+  <link rel="stylesheet" href="//design.perl6.org/perl.css">
+  <meta name="description" value="This is the base class for as SAX-like stream processor. It uses a given StreamBuffer to provide a stream of lines and a Grammar to analyse blocks of text constructed from this input. It needs to be inherited by a subclass which implements the private method process()." />
+  
+</head>
+<body class="pod" id="___top">
+
+
+<h1 class='title'>StreamParser::Base</h1>
+<nav class="indexgroup">
+</nav>
+<p>Base class for as SAX-like stream processor</p>
+<section><h1>SYNOPSIS</h1>
+<pre>class MyClass is StreamParser::StreamParserBase {...}
+my Utilities::StreamBuffer $buffer .= new( :input($input)  ) ;
+my Grammar $grammar;
+my $actions;
+
+my MyClass $my-parser .=new( :stream-buffer( $buffer ), :stream-parser-grammar( $grammar ), :stream-parser-actions( $actions ) );
+$my-parser.parse();
+</pre>
+</section>
+<section><h1>DESCRIPTION</h1>
+<p>This is the base class for as SAX-like stream processor. It uses a given <a href="StreamBuffer">StreamBuffer</a> to provide a stream of lines and a <em>Grammar</em> to analyse blocks of text constructed from this input. It needs to be inherited by a subclass which implements the private method <em>process()</em>.</p>
+</section>
+<section><h1>METHOD</h1>
+<pre>StreamParser::BaseSubclass.=new( :input( StreamBuffer $input ) )
+</pre>
+<p><em>new()</em> creates an instance of <strong>StreamParser::Base</strong></p>
+<p><strong>Arguments:</strong></p>
+<li><p>stream-buffer: instantation of <a href="StreamBuffer">StreamBuffer</a> or derivative</p>
+</li>
+<li><p>stream-parser-grammar: a grammar that returns a string key and string hash value</p>
+</li>
+<li><p>stream-parser-actions: an action class to complement the grammar</p>
+</li>
+</section>
+<section><h1>METHOD</h1>
+<pre>StreamParser::BaseSubclass.parse()
+</pre>
+<p>The method <em>parse()</em> loops through lines provided by the <a href="stream-buffer">stream-buffer</a> progressively concatenating the recieved lines with previous lines in to a text &quot;block&quot; until a match is achieved with the &quot;block&quot; against the <em>stream-parser-grammar</em>.  The &quot;key&quot; returned by <em>stream-parser-grammar</em> is identified as the &quot;event&quot; and together with the value returned by <em>stream-parser-grammar</em> and passed to <em>process()</em> for processing. Trailing unmatched text is returned to the <a href="stream-buffer">stream-buffer</a> to be provided on the next iteration which will re-start with a empty text &quot;block&quot;. Parsing stops when <a href="stream-buffer">stream-buffer</a> can&#39;t provide any more lines of text and left-over text is returned. <strong>Arguments:</strong> None</p>
+</section>
+<section><h1>METHOD</h1>
+<p><em>process()</em> is a private method stub of <strong>StreamParser::Base</strong> and must be implemented by a subclass.</p>
+<p><strong>Arguments:</strong></p>
+<li><p>event: name of event string</p>
+</li>
+<li><p>event-hash: name/value pairs of data provided by the event</p>
+</li>
+</section>
+<section><h1>cut</h1>
+</section>
+
+
+
+</body>
+</html>
+

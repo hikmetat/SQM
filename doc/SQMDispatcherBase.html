@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+  <title>StreamDispatcher::SQMDispatcherBase</title>
+  <meta charset="UTF-8" />
+  <style>
+    /* code gets the browser-default font
+     * kbd gets a slightly less common monospace font
+     * samp gets the hard pixelly fonts
+     */
+    kbd { font-family: "Droid Sans Mono", "Luxi Mono", "Inconsolata", monospace }
+    samp { font-family: "Terminus", "Courier", "Lucida Console", monospace }
+    /* WHATWG HTML frowns on the use of <u> because it looks like a link,
+     * so we make it not look like one.
+     */
+    u { text-decoration: none }
+    .nested {
+        margin-left: 3em;
+    }
+    // footnote things:
+    aside, u { opacity: 0.7 }
+    a[id^="fn-"]:target { background: #ff0 }
+  </style>
+  <link rel="stylesheet" href="//design.perl6.org/perl.css">
+  <meta name="description" value="This is the base class for as SAX-like event dispatcher for SQM handling. It extends  StreamDispatcher::StreamDispatcherBase by providing a methods for the following events:class-beginattribclass-endarray-beginarray-elemarray-end For each event a method of the form evp_the-event(%event-hash) exists which transform the hash input into &#39;name&#39; and/or &#39;value&#39; arguments and then call the event methods to be overridden by descendant classes of the form event-name(...). The method evp_closer yields to evp_class-end and evp_array-end according to the stack maintained by evp_class-begin and evp_class-end. Normally evp_* methods should not be overridden by descendant classes. All processing should be done under the event-name methods. " />
+  
+</head>
+<body class="pod" id="___top">
+
+
+<h1 class='title'>StreamDispatcher::SQMDispatcherBase</h1>
+<nav class="indexgroup">
+</nav>
+<p>Base class for as SAX-like event dispatcher for SQM input</p>
+<section><h1>SYNOPSIS</h1>
+<pre>class MyClass is StreamDispatcher::SQMDispatcherBase {...}
+my StreamBuffer $buffer .= new( :input($input)  ) ;
+
+my MyClass $my-parser .=new( :stream-buffer( $buffer ) );
+$my-parser.parse();
+</pre>
+</section>
+<section><h1>DESCRIPTION</h1>
+<p>This is the base class for as SAX-like event dispatcher for SQM handling. It extends  <a href="StreamDispatcher::StreamDispatcherBase">StreamDispatcher::StreamDispatcherBase</a> by providing a methods for the following events:</p>
+<li><p>class-begin</p>
+</li>
+<li><p>attrib</p>
+</li>
+<li><p>class-end</p>
+</li>
+<li><p>array-begin</p>
+</li>
+<li><p>array-elem</p>
+</li>
+<li><p>array-end For each event a method of the form <em>evp_the-event(%event-hash)</em> exists which transform the hash input into &#39;name&#39; and/or &#39;value&#39; arguments and then call the event methods to be overridden by descendant classes of the form <em>event-name(...)</em>. The method evp_closer yields to <em>evp_class-end</em> and <em>evp_array-end</em> according to the stack maintained by <em>evp_class-begin</em> and <em>evp_class-end</em>. Normally <em>evp_*</em> methods should not be overridden by descendant classes. All processing should be done under the <em>event-name</em> methods. </p>
+</li>
+</section>
+<section><h1>cut</h1>
+</section>
+
+
+
+</body>
+</html>
+

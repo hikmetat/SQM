@@ -1,0 +1,32 @@
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Delivered Variables to be used in data definition templates
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+#	$TABLE-NAME: 		The name of the target database table. Provided by command argument as string
+#	$SEARCH-ATT-NAME:	The name of the attribute being queried against. Provided by lines of *Search Parameters* file given as a command argument
+#	$SEARCH-ATT-VALUE:	The value of the attribute being queried against. Provided by lines of *Search Parameters* file given as a command argument 
+#	$VALUE-ATT-NAMES:	The names of the attributes being queried. Provided by lines of *Search Parameters* file given as a command argument. Comma separated.
+#	$VALUE-ATT-VALUES:	The values of the attributes being queried. Provided by lines of *Search Parameters* file given as a command argument. Comma separated.  
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Template Structure
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 	- All uncommented statements form part of the template. Templates are separated by semicolons (;)
+#	- Statements following BEGIN: will be executed once prior to source search
+#	- Statements following BODY: will be executed for each search success
+#	- Statements following END: will be executed once after source search
+#	- BEGIN:, BODY: and END: are mandatory (even if empty) and must be in this order
+#	- Lines beginning with the pound sign (#) are ignored
+#---------------------------------------------------------------------------------------------------------------------------------------------------------------
+# Important warning: 	It is the users responsibility to ensure consistency of output with existing table structure if DROP table is not applied
+#						In particular use of regexp for $VALUE-ATT-NAMES will result in as many columns as patterns matched
+PARAMS:
+	KEEP-TERMINATOR = YES;
+BEGIN:
+#	Delete existing table
+	DROP TABLE $TABLE-NAME;
+	DROP TABLE $TABLE-NAME-XXX;
+	
+	
+BODY:
+	INSERT INTO $TABLE-NAME ( $SEARCH-ATT-NAME, $VALUE-ATT-NAMES ) SELECT $SEARCH-ATT-VALUE AS EXP1, $VALUE-ATT-VALUES AS EXP2;
+END:
+#	empty END

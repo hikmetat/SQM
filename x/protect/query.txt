@@ -1,0 +1,17 @@
+# test data
+# Pre defined variables are %ATTRIBUTES: Hash of String, $CLASSNAME: String, $CLASSPATH: '/' delimited String, &ARRAYS: Hash of Array of Any, %MEMORY Hash of Any
+# Statement structure RETURN { perl6 block } WHERE { perl6 block }
+
+PROLOG	{ 
+	%MEMORY<out01> = "D:\Users\Hikmet\workspace\SVR-SQM\out01.txt".IO.open;
+	%MEMORY<out02> = $*STDIO 
+}
+BODY	{
+	%MEMORY<out01>.say 
+		"INSERT INTO datatab (Class, Path, AttName, AttValue) VALUES SELECT '$CLASSNAME', '$CLASSPATH', 'side', '{%ATTRIBUTES<side>}';\n" ~
+		"INSERT INTO datatab (Class, Path, AttName, AttValue) VALUES SELECT '$CLASSNAME', '$CLASSPATH', 'vehicle', '{%ATTRIBUTES<vehicle>}';" ;
+	%MEMORY<out02>.say 
+		"INSERT INTO datatab (Class, Path, AttName, AttValue) VALUES SELECT '$CLASSNAME', '$CLASSPATH', 'leader', '%ATTRIBUTES<leader>';" 
+			if %ATTRIBUTES<side> eqv '"EAST"'
+}
+
